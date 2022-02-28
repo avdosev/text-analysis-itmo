@@ -18,6 +18,7 @@ for file_name in os.listdir(data_path):
 # разбить на слова
 uniques_words = set()
 sep = re.compile(r'\W+') 
+notRussia = re.compile(r'[A-Za-z0-9]') 
 for i, text in enumerate(texts):
     words = re.split(sep, text)
     words = [s.lower() for s in words if len(s) != 0]
@@ -29,8 +30,15 @@ print()
 print('Первый десяток слов')
 print(uniques_words[:10])
 
+def need_skip(word: str):
+    return notRussia.match(word)
 
-# todo: 
 # сделать предвычисления
 # сохранить в папку lab1/cahce
-
+with open('lab1/cache/words.txt', 'w', encoding='utf-8') as f:
+    for word in uniques_words:
+        if need_skip(word): continue
+        try:
+            print(word, file=f)
+        finally:
+            None
