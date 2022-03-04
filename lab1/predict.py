@@ -36,26 +36,36 @@ def dist_for_list(test_word, words):
     dists = [lev_dist(test_word, word) for word in words]
     return dict(zip(dists, words))
 
+def predict_words(test_word, json_data):
+    key = ''.join(sorted(set(test_word)))
+    char_set = set(test_word)
+    char_set_len = len(char_set)
+    best_scores = dict()
+    for key, val in json_data.items():
+        if char_set_len - len(set(key) & char_set) > 3:
+            continue
+        score_word = dist_for_list(test_word, val)
+        score, word = min_score(score_word)
+        if score not in best_scores:
+            best_scores[score] = []
+        best_scores[score].append(word)
+    return best_scores
 
 def main():
     print('load prepared data...')
     with open(dict_path) as f:
         json_data = json.load(f)
     print('loaded')
-    test_word = input()
-    key = ''.join(sorted(set(test_word)))
-    if key not in json_data:
-        best_scores = dict()
-        for key, val in json_data.items():
-            score_word = dist_for_list(test_word, val)
-            score, word = min_score(score_word)
-            if score not in best_scores:
-                best_scores[score] = []
-            best_scores[score].append(word)
-        print(min_score(best_scores))
-    else:
-        score_word = dist_for_list(test_word, json_data[key])
-        print(min_score(score_word))
+    while True:
+        test_word = input('type word or q: ')
+        if test_word == 'q':
+            break
+        
+        variants = predict_words(test_word, json_data)
+        variants = sorted(list(variants.items()), key=lambda x: x[0])
+        for variant in variants[:2]:
+            print(variant)
+    
 
 
 if __name__ == "__main__":
