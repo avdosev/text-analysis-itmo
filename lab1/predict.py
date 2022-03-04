@@ -48,8 +48,10 @@ def main():
         best_scores = dict()
         for key, val in json_data.items():
             score_word = dist_for_list(test_word, val)
-            score, word = (min_score(score_word))
-            best_scores[score] = word
+            score, word = min_score(score_word)
+            if score not in best_scores:
+                best_scores[score] = []
+            best_scores[score].append(word)
         print(min_score(best_scores))
     else:
         score_word = dist_for_list(test_word, json_data[key])
