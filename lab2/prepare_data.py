@@ -19,12 +19,10 @@ with open(filename, encoding='utf-8') as f:
 
         aneks.append(anek)
 
-tokens = re.compile(r'((\w\.)*\w+)|([,:\-?]|\.+)')
-def use_token(token): 
-    if len(token[0]) == 0: return token[2]
-    else: return token[0] 
+tokens = re.compile(r'(((\w\.)*\w+)|([,:\-?]|\.+))')
+
 def tokenize(line: str):
-    return [use_token(item) for item in re.findall(tokens, line)]
+    return [item[0] for item in re.findall(tokens, line)]
 
 tokenized_aneks = [tokenize(anek) for anek in aneks[:2]]
 
