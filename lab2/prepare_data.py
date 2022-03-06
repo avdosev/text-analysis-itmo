@@ -24,10 +24,10 @@ tokens = re.compile(r'(((\w\.)*\w+)|([,:\-?]|\.+))')
 def tokenize(line: str):
     return [item[0] for item in re.findall(tokens, line)]
 
-tokenized_aneks = [tokenize(anek) for anek in aneks[:2]]
+tokenized_aneks = [tokenize(anek) for anek in aneks]
 
 result = tokenized_aneks
-with open('lab2/cache/data.json', 'w', encoding='utf-8') as f:
+with open('lab2/cache/texts.json', 'w', encoding='utf-8') as f:
     json.dump(result, f, indent=2, ensure_ascii=False)
 
 
