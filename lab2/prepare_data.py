@@ -15,7 +15,7 @@ with open(filename, encoding='utf-8') as f:
 
         anek = line[start+1:end]
 
-        anek = anek.replace('\\n', '').lower()
+        anek = anek.replace('\\n', ' ').lower()
 
         aneks.append(anek)
 
@@ -25,6 +25,8 @@ def tokenize(line: str):
     return [item[0] for item in re.findall(tokens, line)]
 
 tokenized_aneks = [tokenize(anek) for anek in aneks]
+def is_empty(sized): return len(sized) == 0
+tokenized_aneks = [tokens for tokens in tokenized_aneks if not is_empty(tokens)]
 
 result = tokenized_aneks
 with open('lab2/cache/texts.json', 'w', encoding='utf-8') as f:
