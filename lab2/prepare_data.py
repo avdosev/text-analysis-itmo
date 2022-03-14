@@ -4,6 +4,7 @@ import re
 filename = 'data/aneks.sql'
 
 result = {}
+dots = re.compile(r'\.{2,}')
 aneks = []
 with open(filename, encoding='utf-8') as f:
     for line in f:
@@ -14,7 +15,10 @@ with open(filename, encoding='utf-8') as f:
         end = line.find("'", start+1)
 
         anek = line[start+1:end]
-
+        try:
+            anek = re.sub(dots, '.', anek)
+        except:
+            pass
         anek = anek.replace('\\n', ' ').lower()
 
         aneks.append(anek)
