@@ -34,12 +34,14 @@ counts.update(n_gram_counts)
 counts.update({END_SEQ: len(texts)})
 counts.update({START_SEQ: len(texts)})
 
+new_result = {}
+
 for n_gram, count in n_gram_counts.items():
     i = n_gram.find('~')
     word, u_gram = n_gram[:i], n_gram[i+1:]
-    result[n_gram] = count / counts[word]
+    new_result[n_gram] = count / counts[word]
 
 with open('lab2/cache/data.json', 'w', encoding='utf-8') as f:
-    json.dump(result, f, ensure_ascii=False, indent=1)
+    json.dump(new_result, f, ensure_ascii=False, indent=1)
 
 # есть смысл сформировать более удобное представление данных
