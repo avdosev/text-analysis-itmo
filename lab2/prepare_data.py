@@ -1,5 +1,6 @@
 import json
 import re
+import html
 
 filename = 'data/aneks.sql'
 
@@ -15,6 +16,7 @@ with open(filename, encoding='utf-8') as f:
         end = line.find("'", start+1)
 
         anek = line[start+1:end]
+        anek = html.unescape(anek)
         try:
             anek = re.sub(dots, '.', anek)
         except:
