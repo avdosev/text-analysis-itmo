@@ -2,9 +2,6 @@ from base64 import encode
 import json
 import random
 
-n_grams_dir = 'lab2/cache/data.json'
-
-
 def continue_anek(key, n_grams):
     relevant = n_grams[key]
     part_sum = []
@@ -18,13 +15,14 @@ def continue_anek(key, n_grams):
         if abs(part_sum[i] - probability) < min_dist:
             min_dist = abs(part_sum[i] - probability)
             most_relevant_id = i
-    res = relevant[most_relevant_id][0].split('~')[1:]
+    res = relevant[most_relevant_id][0].split('~')[n-1:]
     return res
 
 def prepare_relevant(n_grams):
     result = {}
     for key, val in n_grams.items():
-        words = key.split('~')
+        i = key.rfind('~')
+        words = [key[:i], key[i+1:]]
         key_word = words[0]
         if key_word not in result:
             result[key_word] = []
@@ -33,8 +31,10 @@ def prepare_relevant(n_grams):
     
 
 def main():
-
+    global n
+    n = int(input('type n_grams count: '))
     print('load prepared data...')
+    n_grams_dir = f'lab2/cache/data_{n}.json'
     with open(n_grams_dir, encoding='utf-8') as f:
         n_grams = json.load(f)
 
@@ -48,7 +48,10 @@ def main():
         anek.extend(key_word.split(' '))
         
         while True:
-            result = continue_anek(anek[-1].lower(), n_grams)
+            key = '~'.join(word.lower() for word in anek[-n+1:])
+            # print(key)
+            result = continue_anek(key, n_grams)
+            # print(result)
             if result[-1] == '__end_seq':
                 break
             anek.extend(result)
