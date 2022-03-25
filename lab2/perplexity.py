@@ -11,8 +11,8 @@ with open(model_filename, encoding='utf-8') as f:
     probability = json.load(f)
 
 
-eps = 0.1
-text_amount = 10
+eps = 0.01
+text_amount = 100
 
 
 def eval_perplexity(gram_size):
@@ -26,12 +26,12 @@ def eval_perplexity(gram_size):
             else:
                 key = '~'.join(text[0:id])
             if key in probability:
-                mul *= probability[key]
+                mul *= probability[key] ** (-1. / len(text))
             else:
-                mul *= eps
-        avg += (1. / mul) ** (1. / gram_size)
+                mul *= eps ** (-1. / len(text))
+        avg += mul
     return avg / text_amount
 
 
 for n in range(2, 6):
-    print(eval_perplexity(n))
+    print(n, "gram perplexity = ", eval_perplexity(n))
