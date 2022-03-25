@@ -34,10 +34,14 @@ tokenized_aneks = [tokenize(anek) for anek in aneks]
 def is_empty(sized): return len(sized) == 0
 tokenized_aneks = [tokens for tokens in tokenized_aneks if not is_empty(tokens)]
 
-result = tokenized_aneks
-with open('lab2/cache/texts.json', 'w', encoding='utf-8') as f:
-    json.dump(result, f, indent=2, ensure_ascii=False)
+# result = tokenized_aneks
+train = tokenized_aneks[26051:]
+with open('cache/train.json', 'w', encoding='utf-8') as f:
+    json.dump(train, f, indent=2, ensure_ascii=False)
 
+test = tokenized_aneks[0:26050]
+with open('cache/test.json', 'w', encoding='utf-8') as f:
+    json.dump(test, f, indent=2, ensure_ascii=False)
 
 
 

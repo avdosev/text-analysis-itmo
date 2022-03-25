@@ -6,7 +6,7 @@ import json
 from collections import Counter
 
 
-filename = 'lab2/cache/texts.json'
+filename = 'cache/train.json'
 START_SEQ = '__start_seq'
 END_SEQ = '__end_seq'
 
@@ -30,6 +30,9 @@ def make_n_gram(text, n_grams):
 for item in counts.items():
     result[item[0]] = item[1] / v
 
+# with open(f'cache/data.json', 'w', encoding='utf-8') as f:
+#     json.dump(result, f, ensure_ascii=False, indent=1)
+
 def save_n_gramm(n):
     print('n-grams', n)
 
@@ -52,10 +55,13 @@ def save_n_gramm(n):
             new_result[n_gram] = ( count+k ) / (counts[word] + k)
         except ZeroDivisionError:
             print(n_gram)
-
-    with open(f'lab2/cache/data_{n}.json', 'w', encoding='utf-8') as f:
-        json.dump(new_result, f, ensure_ascii=False, indent=1)
+    result.update(new_result)
+    # with open(f'cache/data.json', 'w', encoding='utf-8') as f:
+    #     json.dump(new_result, f, ensure_ascii=False, indent=1)
 
 for n in range(2, 6):
     # print(list(make_n_gram(['1', '2', '3', '4', '5', '6'], n)))
     save_n_gramm(n)
+
+with open(f'cache/data.json', 'w', encoding='utf-8') as f:
+    json.dump(result, f, ensure_ascii=False, indent=1)
