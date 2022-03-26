@@ -6,7 +6,7 @@ import json
 from collections import Counter
 
 
-filename = 'cache/train.json'
+filename = 'lab2/cache/train.json'
 START_SEQ = '__start_seq'
 END_SEQ = '__end_seq'
 
@@ -63,5 +63,5 @@ for n in range(2, 6):
     # print(list(make_n_gram(['1', '2', '3', '4', '5', '6'], n)))
     save_n_gramm(n)
 
-with open(f'cache/data.json', 'w', encoding='utf-8') as f:
+with open(f'lab2/cache/data.json', 'w', encoding='utf-8') as f:
     json.dump(result, f, ensure_ascii=False, indent=1)

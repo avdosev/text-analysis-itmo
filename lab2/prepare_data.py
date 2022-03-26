@@ -36,11 +36,11 @@ tokenized_aneks = [tokens for tokens in tokenized_aneks if not is_empty(tokens)]
 
 # result = tokenized_aneks
 train = tokenized_aneks[26051:]
-with open('cache/train.json', 'w', encoding='utf-8') as f:
+with open('lab2/cache/train.json', 'w', encoding='utf-8') as f:
     json.dump(train, f, indent=2, ensure_ascii=False)
 
 test = tokenized_aneks[0:26050]
-with open('cache/test.json', 'w', encoding='utf-8') as f:
+with open('lab2/cache/test.json', 'w', encoding='utf-8') as f:
     json.dump(test, f, indent=2, ensure_ascii=False)
 
 

@@ -1,8 +1,8 @@
 import json
 import random
 
-test_filename = 'cache/test.json'
-model_filename = 'cache/data.json'
+test_filename = 'lab2/cache/test.json'
+model_filename = 'lab2/cache/data.json'
 
 with open(test_filename, encoding='utf-8') as f:
     texts = json.load(f)
