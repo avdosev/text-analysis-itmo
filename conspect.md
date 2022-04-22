@@ -35,14 +35,20 @@
 
 l2-регуляризация
 
-$$ argmin [Q(X^{e}, w) + \lambda_{2} * sum(W_{i}^2)] $$
+$ argmin [Q(X^{e}, w) + \lambda_{2} * sum(W_{i}^2)] $
 
 l1-регуляризация
 
-$$ argmin [Q(X^{e}, w) + \lambda_{2} * sum(|W_{i}|)] $$
+$ argmin [Q(X^{e}, w) + \lambda_{2} * sum(|W_{i}|)] $
 
 особенность в том, что l1 стремится сильнее занулять
 
 `dropout` - случайное зануление нейрона \
-`dropconnect` - зануление отдельных связей
+`dropconnect` - зануление отдельных связей \
+`batchnorm` 
+
+Техники
+1. Full gradient descent
+2. SGD - stohastic grad descent
+3. Batch grad. descent
 
