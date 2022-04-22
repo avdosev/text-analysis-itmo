@@ -34,5 +34,5 @@ if drop_clusters:
     print('drop clusters')
 
     with open('lab3/data/fast_text_data.json', 'w', encoding='utf-8') as f:
-        data = {data[0]: {'label': data[0], 'cluster': int(data[1])}for data in zip(words, clusters.labels_)}
+        data = {data[0]: int(data[1]) for data in zip(words, clusters.labels_)}
         json.dump(data, f)
