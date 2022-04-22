@@ -25,7 +25,7 @@ if compute_clusters:
         clusters.fit(vecs)
         joblib.dump(clusters, f)
 else:
-    with open('lab3/data/fast_text_clusters.pkl', 'wb') as f:
+    with open('lab3/data/fast_text_clusters.pkl', 'rb') as f:
         clusters = joblib.load(f)
 
 drop_clusters = True
