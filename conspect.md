@@ -52,3 +52,31 @@ $ argmin [Q(X^{e}, w) + \lambda_{2} * sum(|W_{i}|)] $
 2. SGD - stohastic grad descent
 3. Batch grad. descent
 
+### CNN, RNN
+
+Проблемы которые решает CNN
+
+1. Восприятие геометрии текста 
+
+Допустим, есть ff модель
+
+`Benj(i)o`
+
+На вход one-hot encoding
+
+Далее один общий слой для каждого слова подавался  отдельно
+
+Конкатенация
+
+Softmax
+
+transfer learning / fine tuning - решаем одну задачу затем меняем "голову" дообучаем и более сложная задача обучается быстрее
+
+`DSSM` \
+Ronan Kolagert \
+Deep NN with Multitask learning
+
+Рекурентные нейронные сети
+
+
+
