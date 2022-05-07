@@ -78,5 +78,38 @@ Deep NN with Multitask learning
 
 Рекурентные нейронные сети
 
+### Трансформеры
+
+```
+input   | -> transformers -> | output
+t1...tn |                    | t1...tm
+```
+
+transformer:
+```
+                Output
+   (embeding)     |
+    Encoder ->  Decoder
+       |
+    Input [Size:512]
+```
+
+ембединги контексто-зависимые
 
 
+encoder:
+
+```
+token -> self-attention -> ff -> merge -> embeding
+  \                              /
+   -----------------------------
+```
+
+self-attention
+
+мне впадлу рисовать
+
+Подходы обучения
+1. transfer learning
+2. few-short learning
+3. zero-short learning
