@@ -113,3 +113,6 @@ self-attention
 1. transfer learning
 2. few-short learning
 3. zero-short learning
+
+## инфопоиск
+
