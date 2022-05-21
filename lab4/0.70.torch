@@ -1,0 +1,29 @@
+class MyModel(t.nn.Module):
+    def __init__(self, shape):
+        super().__init__()
+        self.stack = t.nn.Sequential(
+            t.nn.Conv1d(shape[0], 100, 1),
+            t.nn.ELU(),
+            t.nn.Conv1d(100, 60, 1),
+            t.nn.ELU(),
+            t.nn.Conv1d(60, 20, 1),
+            t.nn.ELU(),
+            t.nn.Conv1d(20, shape[1], 3),
+            t.nn.MaxPool1d(2),
+            t.nn.ELU(),
+            t.nn.Conv1d(shape[1], 40, 1),
+            t.nn.ELU(),
+            t.nn.Conv1d(40, shape[1], 3),
+            t.nn.MaxPool1d(2),
+            t.nn.ELU(),
+            t.nn.Conv1d(shape[1], 25, 3),
+            t.nn.ELU(),
+            t.nn.Flatten(),
+            t.nn.Linear(6*25, 30),
+            t.nn.ELU(),
+            t.nn.Linear(30, 3),
+            t.nn.ELU(),
+        )
+        
+    def forward(self, X):
+        return self.stack(X)
